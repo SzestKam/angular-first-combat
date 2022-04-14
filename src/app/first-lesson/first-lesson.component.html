@@ -1,0 +1,49 @@
+<h2>Pierwsze kroki z Angularem</h2>
+<div>
+  <p>
+    Wiązanie do wartości z komponentu: {{ title }}
+  </p>
+  <p>
+    Użycie interpolacji z przekształcaniem: {{ title.toUpperCase() }}!
+  </p>
+  <p>
+    Użycie interpolacji z pipe: {{ title | uppercase }}!
+  </p>
+  <p>
+    Nazwa dnia tygodnia pobrana jest z enum. <br/>
+    Dzisiaj jest: {{ getCurrentDay() }}<br/>
+    Pipe z formatowaniem daty: {{ getCurrentDate() | date:'hh:mm a z' }}
+  </p>
+</div>
+<div>
+  Lista kilku pierwszych liczb ciągu Fibb. Użycie dyrektywy
+  <ul>
+    <li *ngFor="let fibb of getSimpleFibb()">{{ fibb }}</li>
+  </ul>
+</div>
+<div>
+  <p>Dyrektywa *ngIf do wyświetlania warunkowego w Angular</p>
+  <p *ngIf="isWeekend()">Wow, jest WEEKEND</p>
+  <p *ngIf="!isWeekend()">Czekamy na WEEKEND</p>
+</div>
+<div>
+
+  <p [ngClass]="{'weekend':isWeekend(), 'workdays':!isWeekend()}">
+    Angular Directives Are Cool! Dynamicznie można zarządzać kolorami poprzez wybór klasy. możemy załadować listę klas jeśli warunek jest spełniony.
+  </p>
+</div>
+<div>
+  Wykonanie akcji: event binding.
+  <button (click)="showAlert()">
+    Press me!
+  </button>
+</div>
+<div>
+  Przykład property binding.<br/>
+  <img [src]="imgUrl" [alt]="imgAlt" [title]="imgAlt"/>
+</div>
+<div>
+  Wiązanie dwukierunkowe.<br/>
+  Wpisany tekst jest aktualizowany na żywo: <span class="msg">{{ my_msg }}</span><br/>
+  <input type="text" [(ngModel)]="my_msg"/>
+</div>

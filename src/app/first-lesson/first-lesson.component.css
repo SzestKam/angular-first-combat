@@ -1,0 +1,23 @@
+div {
+  border: solid 1px #1976d2;
+  border-radius: 3px;
+  margin: 5px;
+  padding: 8px;
+}
+input {
+  margin-bottom: 5px;
+}
+.msg {
+  color: #125699;
+  font-size: xx-large;
+  text-decoration: underline;
+}
+
+.weekend {
+  font-family: Arial;
+  color: peru;
+}
+
+.workdays {
+  color: grey;
+}
