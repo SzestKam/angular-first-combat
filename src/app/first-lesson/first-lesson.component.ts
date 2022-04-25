@@ -45,6 +45,10 @@ export class FirstLessonComponent implements OnInit {
     alert('Yeap, you nailed it!');
   }
 
+  getWeek(): string[] {
+    return Object.values(WeekDayEnum).filter(value => typeof value === 'string') as string[];
+  }
+
   private static convertToDayName(dayNumber: number): string {
     return WeekDayEnum[dayNumber - 1].toUpperCase()
   }

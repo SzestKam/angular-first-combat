@@ -47,3 +47,9 @@
   Wpisany tekst jest aktualizowany na żywo: <span class="msg">{{ my_msg }}</span><br/>
   <input type="text" [(ngModel)]="my_msg"/>
 </div>
+<div>
+  Dni tygodnia:
+  <ol>
+    <li *ngFor="let day of getWeek()">{{ day }}</li>
+  </ol>
+</div>
