@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { ErrorComponent } from './error/error.component';
 import { StudentsComponent } from './students/students.component';
+import { EmailPipe } from './pipes/email.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { StudentsComponent } from './students/students.component';
     FirstLessonComponent,
     HomePageComponent,
     ErrorComponent,
-    StudentsComponent
+    StudentsComponent,
+    EmailPipe
   ],
   imports: [
     BrowserModule,

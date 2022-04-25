@@ -1,0 +1,9 @@
+.left {
+  float: left;
+}
+form {
+  padding: 1em;
+  border: 1px solid #125699;
+  border-radius: 5px;
+  margin-left: 2px;
+}

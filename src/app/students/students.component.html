@@ -1,1 +1,70 @@
-<p>students works!</p>
+<div [ngClass]="[isVisibleForm()?'col-8':'col-12','left']">
+  <div class="card-header">
+    List of students
+    <button class="btn btn-info" (click)="showForm()">
+      Add student
+    </button>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Firstname</th>
+        <th>Surname</th>
+        <th>Index number</th>
+        <th>email</th>
+        <th>Operation</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let student of getStudents();let lp = index ">
+        <td>{{ lp + 1 }}</td>
+        <td>{{ student.firstName }}</td>
+        <td>{{ student.lastName }}</td>
+        <td>{{ student.indexNumber }}</td>
+        <td>{{ student?.email | email }}</td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="isVisibleForm()" class="col-4 left">
+  <form>
+    <div class="mb-3">
+      <label for="studentFirstname" class="form-label">Firstname</label>
+      <input type="text" class="form-control" id="studentFirstname">
+    </div>
+    <div class="mb-3">
+      <label for="studentLastname" class="form-label">Lastname</label>
+      <input type="text" class="form-control" id="studentLastname">
+    </div>
+    <div class="mb-3">
+      <label for="studentIndexNumber" class="form-label">Index number</label>
+      <input type="number" class="form-control" id="studentIndexNumber">
+    </div>
+    <div class="mb-3">
+      <label for="studentEmail" class="form-label">Email</label>
+      <input type="email" class="form-control" id="studentEmail">
+    </div>
+    <div class="mb-3">
+      <label for="studentYear" class="form-label">Year</label>
+      <input type="number" class="form-control" id="studentYear">
+    </div>
+    <div class="mb-3">
+      <label for="studentSpecialization" class="form-label">Specialization</label>
+      <input type="text" class="form-control" id="studentSpecialization">
+    </div>
+    <div class="mb-3">
+      <label for="studentDescription" class="form-label">Description</label>
+      <input type="text" class="form-control" id="studentDescription">
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="reset"
+            class="btn btn-warning"
+            (click)="hideForm()">
+      Cancel
+    </button>
+  </form>
+</div>
