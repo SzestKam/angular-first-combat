@@ -10,6 +10,8 @@ export class StudentsComponent implements OnInit {
   private students: Array<Student> = [];
   private showFormVisible: boolean = false;
 
+  tmpSt: Student = {firstName:'', lastName: '', indexNumber: 0};
+
   constructor() { }
 
   ngOnInit(): void {
@@ -48,5 +50,22 @@ export class StudentsComponent implements OnInit {
 
   hideForm(): void {
     this.showFormVisible = false;
+  }
+
+  saveStudent(): void {
+    this.deleteStudent(this.tmpSt.indexNumber);
+    this.students.push(Object.assign({}, this.tmpSt));
+    this.hideForm();
+    this.tmpSt = {firstName:'', lastName: '', indexNumber: 0};
+  }
+
+  deleteStudent(indexNumber: number): void {
+    this.students = this.students.filter(st => st.indexNumber !== indexNumber);
+  }
+
+  editStudent(indexNumber: number): void {
+    const st = this.students.filter(s => s.indexNumber === indexNumber)[0];
+    this.tmpSt = Object.assign({}, st);
+    this.showForm();
   }
 }

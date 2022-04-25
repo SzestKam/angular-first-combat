@@ -24,43 +24,65 @@
         <td>{{ student.lastName }}</td>
         <td>{{ student.indexNumber }}</td>
         <td>{{ student?.email | email }}</td>
-        <td></td>
+        <td>
+          <button class="btn btn-success"
+                  (click)="editStudent(student.indexNumber)"
+          >Edit</button>
+          <button class="btn btn-danger"
+                  (click)="deleteStudent(student.indexNumber)"
+          >Delete</button>
+        </td>
       </tr>
       </tbody>
     </table>
   </div>
 </div>
 <div *ngIf="isVisibleForm()" class="col-4 left">
-  <form>
+  <form (ngSubmit)="saveStudent()">
     <div class="mb-3">
       <label for="studentFirstname" class="form-label">Firstname</label>
-      <input type="text" class="form-control" id="studentFirstname">
+      <input type="text" class="form-control" id="studentFirstname"
+             name="firstName"
+             [(ngModel)]="tmpSt.firstName"
+             required >
     </div>
     <div class="mb-3">
       <label for="studentLastname" class="form-label">Lastname</label>
-      <input type="text" class="form-control" id="studentLastname">
+      <input type="text" class="form-control" id="studentLastname"
+             name="lastName"
+             [(ngModel)]="tmpSt.lastName">
     </div>
     <div class="mb-3">
       <label for="studentIndexNumber" class="form-label">Index number</label>
-      <input type="number" class="form-control" id="studentIndexNumber">
+      <input type="number" class="form-control" id="studentIndexNumber"
+             name="indexNumber"
+             [(ngModel)]="tmpSt.indexNumber">
     </div>
     <div class="mb-3">
       <label for="studentEmail" class="form-label">Email</label>
-      <input type="email" class="form-control" id="studentEmail">
+      <input type="email" class="form-control" id="studentEmail"
+             name="email"
+             [(ngModel)]="tmpSt.email">
     </div>
     <div class="mb-3">
       <label for="studentYear" class="form-label">Year</label>
-      <input type="number" class="form-control" id="studentYear">
+      <input type="number" class="form-control" id="studentYear"
+             name="year"
+             [(ngModel)]="tmpSt.year">
     </div>
     <div class="mb-3">
       <label for="studentSpecialization" class="form-label">Specialization</label>
-      <input type="text" class="form-control" id="studentSpecialization">
+      <input type="text" class="form-control" id="studentSpecialization"
+             name="studentSpecialization"
+             [(ngModel)]="tmpSt.specialization">
     </div>
     <div class="mb-3">
       <label for="studentDescription" class="form-label">Description</label>
-      <input type="text" class="form-control" id="studentDescription">
+      <input type="text" class="form-control" id="studentDescription"
+             name="studentDescription"
+             [(ngModel)]="tmpSt.description">
     </div>
-    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="submit" class="btn btn-primary">Save</button>
     <button type="reset"
             class="btn btn-warning"
             (click)="hideForm()">
