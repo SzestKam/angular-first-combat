@@ -41,57 +41,11 @@
   </div>
 </div>
 <div *ngIf="isVisibleForm()" class="col-4 left">
-  <form (ngSubmit)="saveStudent()">
-    <div class="mb-3">
-      <label for="studentFirstname" class="form-label">Firstname</label>
-      <input type="text" class="form-control" id="studentFirstname"
-             name="firstName"
-             [(ngModel)]="temporaryStudent.firstName"
-             required >
-    </div>
-    <div class="mb-3">
-      <label for="studentLastname" class="form-label">Lastname</label>
-      <input type="text" class="form-control" id="studentLastname"
-             name="lastName"
-             [(ngModel)]="temporaryStudent.lastName">
-    </div>
-    <div class="mb-3">
-      <label for="studentIndexNumber" class="form-label">Index number</label>
-      <input type="number" class="form-control" id="studentIndexNumber"
-             name="indexNumber"
-             [(ngModel)]="temporaryStudent.indexNumber">
-    </div>
-    <div class="mb-3">
-      <label for="studentEmail" class="form-label">Email</label>
-      <input type="email" class="form-control" id="studentEmail"
-             name="email"
-             [(ngModel)]="temporaryStudent.email">
-    </div>
-    <div class="mb-3">
-      <label for="studentYear" class="form-label">Year</label>
-      <input type="number" class="form-control" id="studentYear"
-             name="year"
-             [(ngModel)]="temporaryStudent.year">
-    </div>
-    <div class="mb-3">
-      <label for="studentSpecialization" class="form-label">Specialization</label>
-      <input type="text" class="form-control" id="studentSpecialization"
-             name="studentSpecialization"
-             [(ngModel)]="temporaryStudent.specialization">
-    </div>
-    <div class="mb-3">
-      <label for="studentDescription" class="form-label">Description</label>
-      <input type="text" class="form-control" id="studentDescription"
-             name="studentDescription"
-             [(ngModel)]="temporaryStudent.description">
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-    <button type="reset"
-            class="btn btn-warning"
-            (click)="hideForm()">
-      Cancel
-    </button>
-  </form>
+  <app-student-new
+    [student]="temporaryStudent"
+    (onCancel)="hideForm()"
+    (onSave)="saveStudent($event)"
+  ></app-student-new>
 </div>
 
 <div *ngIf="isDetailsForm()" class="col-4 left">

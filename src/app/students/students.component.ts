@@ -17,7 +17,7 @@ export class StudentsComponent implements OnInit {
   constructor(private studentSrv: StudentService) {}
 
   ngOnInit(): void {
-    this.data = this.studentSrv.getList();
+    this.pickupData();
   }
 
   getStudents(): Array<Student> {
@@ -49,10 +49,10 @@ export class StudentsComponent implements OnInit {
     this.temporaryStudent = {firstName:'', lastName: '', indexNumber: 0};
   }
 
-  saveStudent(): void {
-    this.studentSrv.save(this.temporaryStudent);
+  saveStudent($student: Student): void {
+    this.studentSrv.save($student);
     this.hideForm();
-    this.temporaryStudent = {firstName:'', lastName: '', indexNumber: 0};
+    this.pickupData();
   }
 
   deleteStudent(indexNumber: number): void {
@@ -68,5 +68,9 @@ export class StudentsComponent implements OnInit {
   detailsStudent(indexNumber: number):void {
     this.showDetails();
     this.temporaryStudent = this.studentSrv.getBy(indexNumber);
+  }
+
+  private pickupData() {
+    this.data = this.studentSrv.getList();
   }
 }

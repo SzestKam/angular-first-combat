@@ -12,6 +12,7 @@ import {StudentsComponent} from './students/students.component';
 import {EmailPipe} from './pipes/email.pipe';
 import {HttpClientModule} from '@angular/common/http';
 import { StudentDetailsComponent } from './student-details/student-details.component';
+import { StudentNewComponent } from './student-new/student-new.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { StudentDetailsComponent } from './student-details/student-details.compo
     ErrorComponent,
     StudentsComponent,
     EmailPipe,
-    StudentDetailsComponent
+    StudentDetailsComponent,
+    StudentNewComponent
   ],
   imports: [
     BrowserModule,
