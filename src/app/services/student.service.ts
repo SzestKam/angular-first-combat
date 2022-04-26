@@ -1,12 +1,16 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Student} from '../model/Student';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
   private students: Array<Student> = [];
-  constructor() {
+
+  private readonly baseUrl = 'https://angular-f9286-default-rtdb.europe-west1.firebasedatabase.app/students/';
+
+  constructor(private httpClient: HttpClient) {
     this.students = [
       {
         firstName: 'Janusz',
@@ -35,6 +39,12 @@ export class StudentService {
   save(newStudent: Student): void {
     this.deleteBy(newStudent.indexNumber);
     this.students.push(Object.assign({}, newStudent));
+
+    const url = this.baseUrl + newStudent.indexNumber + '.json';
+    this.httpClient
+      .put<Student>(url, JSON.stringify(newStudent))
+      .subscribe();
+
   }
 
   deleteBy(indexNumber: number): void {
