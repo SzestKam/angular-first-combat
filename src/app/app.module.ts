@@ -11,6 +11,7 @@ import {ErrorComponent} from './error/error.component';
 import {StudentsComponent} from './students/students.component';
 import {EmailPipe} from './pipes/email.pipe';
 import {HttpClientModule} from '@angular/common/http';
+import { StudentDetailsComponent } from './student-details/student-details.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {HttpClientModule} from '@angular/common/http';
     HomePageComponent,
     ErrorComponent,
     StudentsComponent,
-    EmailPipe
+    EmailPipe,
+    StudentDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -27,7 +27,10 @@ export class StudentService {
         firstName: 'Roman',
         lastName: 'Nowak',
         indexNumber: 5555,
-        email: 'rnowak@example.pl'
+        email: 'rnowak@example.pl',
+        year: 3,
+        specialization: 'Computer Science',
+        description: 'Back to university'
       }
     ];
   }
@@ -35,8 +38,8 @@ export class StudentService {
   getList(): Array<Student> {
 
     const url = this.baseUrl + '.json';
-    this.httpClient.get(url)
-      .subscribe(res =>console.log(res));
+    this.httpClient.get<Student[]>(url)
+      .subscribe( (student: Student[]) => console.log(student) );
 
     return this.students;
   }

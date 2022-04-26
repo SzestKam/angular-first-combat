@@ -9,6 +9,7 @@ import {StudentService} from '../services/student.service';
 })
 export class StudentsComponent implements OnInit {
   private showFormVisible: boolean = false;
+  private showDetailsVisible: boolean = false;
   private data: Array<Student> = [];
 
   temporaryStudent: Student = {firstName:'', lastName: '', indexNumber: 0};
@@ -35,6 +36,19 @@ export class StudentsComponent implements OnInit {
     this.showFormVisible = false;
   }
 
+  isDetailsForm(): boolean {
+    return this.showDetailsVisible;
+  }
+
+  showDetails(): void {
+    this.showDetailsVisible = true;
+  }
+
+  hideDetails(): void {
+    this.showDetailsVisible = false;
+    this.temporaryStudent = {firstName:'', lastName: '', indexNumber: 0};
+  }
+
   saveStudent(): void {
     this.studentSrv.save(this.temporaryStudent);
     this.hideForm();
@@ -49,5 +63,10 @@ export class StudentsComponent implements OnInit {
     const st = this.studentSrv.getBy(indexNumber);
     this.temporaryStudent = Object.assign({}, st);
     this.showForm();
+  }
+
+  detailsStudent(indexNumber: number):void {
+    this.showDetails();
+    this.temporaryStudent = this.studentSrv.getBy(indexNumber);
   }
 }

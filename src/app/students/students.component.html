@@ -31,6 +31,9 @@
           <button class="btn btn-danger"
                   (click)="deleteStudent(student.indexNumber)"
           >Delete</button>
+          <button class="btn btn-dark"
+                  (click)="detailsStudent(student.indexNumber)"
+          >Details</button>
         </td>
       </tr>
       </tbody>
@@ -89,4 +92,11 @@
       Cancel
     </button>
   </form>
+</div>
+
+<div *ngIf="isDetailsForm()" class="col-4 left">
+  <app-student-details
+    [student] = temporaryStudent
+    (onClose)="hideDetails()"
+  ></app-student-details>
 </div>
