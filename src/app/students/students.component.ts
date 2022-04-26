@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../model/Student';
+import {StudentService} from '../services/student.service';
 
 @Component({
   selector: 'app-students',
@@ -7,37 +8,16 @@ import { Student } from '../model/Student';
   styleUrls: ['./students.component.css']
 })
 export class StudentsComponent implements OnInit {
-  private students: Array<Student> = [];
   private showFormVisible: boolean = false;
 
-  tmpSt: Student = {firstName:'', lastName: '', indexNumber: 0};
+  temporaryStudent: Student = {firstName:'', lastName: '', indexNumber: 0};
 
-  constructor() { }
+  constructor(private studentSrv: StudentService) {}
 
-  ngOnInit(): void {
-    this.students = [
-      {
-        firstName: 'Jan',
-        lastName: 'Kowalski',
-        indexNumber: 2233
-      },
-      {
-        firstName: 'Janina',
-        lastName: 'Nowak',
-        indexNumber: 5533,
-        email: 'janina@nowak.pl'
-      },
-      {
-        firstName: 'Roman',
-        lastName: 'Nowak',
-        indexNumber: 5555,
-        email: 'rnowak@example.pl'
-      }
-    ];
-  }
+  ngOnInit(): void {}
 
   getStudents(): Array<Student> {
-    return this.students;
+    return this.studentSrv.getList();
   }
 
   isVisibleForm(): boolean {
@@ -53,19 +33,18 @@ export class StudentsComponent implements OnInit {
   }
 
   saveStudent(): void {
-    this.deleteStudent(this.tmpSt.indexNumber);
-    this.students.push(Object.assign({}, this.tmpSt));
+    this.studentSrv.save(this.temporaryStudent);
     this.hideForm();
-    this.tmpSt = {firstName:'', lastName: '', indexNumber: 0};
+    this.temporaryStudent = {firstName:'', lastName: '', indexNumber: 0};
   }
 
   deleteStudent(indexNumber: number): void {
-    this.students = this.students.filter(st => st.indexNumber !== indexNumber);
+    this.studentSrv.deleteBy(indexNumber);
   }
 
   editStudent(indexNumber: number): void {
-    const st = this.students.filter(s => s.indexNumber === indexNumber)[0];
-    this.tmpSt = Object.assign({}, st);
+    const st = this.studentSrv.getBy(indexNumber);
+    this.temporaryStudent = Object.assign({}, st);
     this.showForm();
   }
 }
