@@ -9,15 +9,18 @@ import {StudentService} from '../services/student.service';
 })
 export class StudentsComponent implements OnInit {
   private showFormVisible: boolean = false;
+  private data: Array<Student> = [];
 
   temporaryStudent: Student = {firstName:'', lastName: '', indexNumber: 0};
 
   constructor(private studentSrv: StudentService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.data = this.studentSrv.getList();
+  }
 
   getStudents(): Array<Student> {
-    return this.studentSrv.getList();
+    return this.data;
   }
 
   isVisibleForm(): boolean {

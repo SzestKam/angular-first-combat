@@ -8,7 +8,7 @@ import {HttpClient} from '@angular/common/http';
 export class StudentService {
   private students: Array<Student> = [];
 
-  private readonly baseUrl = 'https://angular-f9286-default-rtdb.europe-west1.firebasedatabase.app/students/';
+  private readonly baseUrl = 'https://angular-f9286-default-rtdb.europe-west1.firebasedatabase.app/students';
 
   constructor(private httpClient: HttpClient) {
     this.students = [
@@ -33,6 +33,11 @@ export class StudentService {
   }
 
   getList(): Array<Student> {
+
+    const url = this.baseUrl + '.json';
+    this.httpClient.get(url)
+      .subscribe(res =>console.log(res));
+
     return this.students;
   }
 
@@ -40,7 +45,7 @@ export class StudentService {
     this.deleteBy(newStudent.indexNumber);
     this.students.push(Object.assign({}, newStudent));
 
-    const url = this.baseUrl + newStudent.indexNumber + '.json';
+    const url = this.baseUrl + '/' + newStudent.indexNumber + '.json';
     this.httpClient
       .put<Student>(url, JSON.stringify(newStudent))
       .subscribe();
