@@ -23,7 +23,7 @@
         <td>{{ student.firstName }}</td>
         <td>{{ student.lastName }}</td>
         <td>{{ student.indexNumber }}</td>
-        <td>{{ student?.email | email }}</td>
+        <td [innerHtml]="student?.email | email"></td>
         <td>
           <button class="btn btn-success"
                   (click)="editStudent(student.indexNumber)"
