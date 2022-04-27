@@ -1,0 +1,56 @@
+<div [ngClass]="[isVisibleForm()?'col-8':'col-12','left']">
+  <div class="card-header">
+    List of students
+    <button class="btn btn-info" (click)="addStudent()">
+      Add student
+    </button>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Firstname</th>
+        <th>Surname</th>
+        <th>Index number</th>
+        <th>email</th>
+        <th>Operation</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let student of getStudents();let lp = index ">
+        <td>{{ lp + 1 }}</td>
+        <td>{{ student.firstName }}</td>
+        <td>{{ student.lastName }}</td>
+        <td>{{ student.indexNumber }}</td>
+        <td [innerHtml]="student?.email | email"></td>
+        <td>
+          <button class="btn btn-success"
+                  (click)="editStudent(student.indexNumber)"
+          >Edit</button>
+          <button class="btn btn-danger"
+                  (click)="deleteStudent(student.indexNumber)"
+          >Delete</button>
+          <button class="btn btn-dark"
+                  (click)="detailsStudent(student.indexNumber)"
+          >Details</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="isVisibleForm()" class="col-4 left">
+  <app-student-new
+    [student]="temporaryStudent"
+    (onCancel)="hideForm()"
+    (onSave)="saveStudent($event)"
+  ></app-student-new>
+</div>
+
+<div *ngIf="isDetailsForm()" class="col-4 left">
+  <app-student-details
+    [student] = temporaryStudent
+    (onClose)="hideDetails()"
+  ></app-student-details>
+</div>

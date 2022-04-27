@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-header">Index number: {{ student. indexNumber }}
+    <button class="btn btn-close" (click)="closeDetails()"></button>
+  </div>
+  <div class="card-body">
+    <div class="row">Name: {{student.firstName}} {{student.lastName}}</div>
+    <div class="row">mail: {{student.email}}</div>
+    <div class="row">Specialization: {{student.specialization}}</div>
+    <div class="row">Description: {{student.description}}</div>
+  </div>
+  <div class="card-footer">Year: {{student.year}}</div>
+</div>

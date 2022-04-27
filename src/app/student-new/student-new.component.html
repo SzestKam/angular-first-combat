@@ -1,0 +1,54 @@
+<form [formGroup]="studentForm" (ngSubmit)="saveStudent()">
+  <div class="mb-3">
+    <label for="studentFirstname" class="form-label">Firstname</label>
+    <input type="text" class="form-control" id="studentFirstname"
+           formControlName="firstName" />
+    <div *ngIf="isErrorFirstName()" class="alert alert-danger">
+      <div *ngIf="studentForm.get('firstName')?.errors?.['required']">
+        Field is required
+      </div>
+      <div *ngIf="studentForm.get('firstName')?.errors?.['minlength']">
+        Min length is 3 chars
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="studentLastname" class="form-label">Lastname</label>
+    <input type="text" class="form-control" id="studentLastname"
+           formControlName="lastName"/>
+  </div>
+  <div class="mb-3">
+    <label for="studentIndexNumber" class="form-label">Index number</label>
+    <input type="number" class="form-control" id="studentIndexNumber"
+           formControlName="indexNumber"/>
+  </div>
+  <div class="mb-3">
+    <label for="studentEmail" class="form-label">Email</label>
+    <input type="email" class="form-control" id="studentEmail"
+           formControlName="email" />
+  </div>
+  <div class="mb-3">
+    <label for="studentYear" class="form-label">Year</label>
+    <input type="number" class="form-control" id="studentYear"
+           formControlName="year" />
+  </div>
+  <div class="mb-3">
+    <label for="studentSpecialization" class="form-label">Specialization</label>
+    <input type="text" class="form-control" id="studentSpecialization"
+           formControlName="specialization" />
+  </div>
+  <div class="mb-3">
+    <label for="studentDescription" class="form-label">Description</label>
+    <input type="text" class="form-control" id="studentDescription"
+           formControlName="description" />
+  </div>
+  <button type="submit"
+          [disabled]="studentForm.invalid"
+          class="btn btn-primary">
+    Save</button>
+  <button type="reset"
+          class="btn btn-warning"
+          (click)="cancel()">
+    Cancel
+  </button>
+</form>
