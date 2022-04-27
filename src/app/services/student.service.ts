@@ -1,7 +1,7 @@
 import {Injectable, OnInit} from '@angular/core';
 import {Student} from '../model/Student';
 import {HttpClient} from '@angular/common/http';
-import {tap} from 'rxjs';
+import {Observable, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,23 +11,22 @@ export class StudentService {
 
   private readonly baseUrl = 'https://angular-f9286-default-rtdb.europe-west1.firebasedatabase.app/students';
 
-  constructor(private httpClient: HttpClient) {
-    this.refreshFromRemote();
-  }
+  constructor(private httpClient: HttpClient) {}
 
   getList(): Array<Student> {
+    this.refreshFromRemote();
     return this.students;
   }
 
-  save(newStudent: Student): void {
+  save(newStudent: Student): Observable<Student> {
     const url = this.baseUrl + '/' + newStudent.indexNumber + '.json';
-    this.httpClient
-      .put<Student>(url, JSON.stringify(newStudent))
-      .subscribe(() => this.refreshFromRemote());
+    return this.httpClient
+      .put<Student>(url, JSON.stringify(newStudent));
   }
 
-  deleteBy(indexNumber: number): void {
-    this.students = this.students.filter(st => st.indexNumber !== indexNumber);
+  deleteBy(indexNumber: number): Observable<Student> {
+    const url = this.baseUrl + '/' + indexNumber + '.json';
+    return this.httpClient.delete<Student>(url);
   }
 
   getBy(indexNumber: number): Student {
