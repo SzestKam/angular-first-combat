@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FirstLessonComponent} from './first-lesson/first-lesson.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {RouterModule} from '@angular/router';
@@ -13,6 +13,7 @@ import {EmailPipe} from './pipes/email.pipe';
 import {HttpClientModule} from '@angular/common/http';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { StudentNewComponent } from './student-new/student-new.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { StudentNewComponent } from './student-new/student-new.component';
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [HomePageComponent]

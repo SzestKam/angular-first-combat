@@ -1,46 +1,41 @@
-<form (ngSubmit)="saveStudent()">
+<form [formGroup]="studentForm" (ngSubmit)="saveStudent()">
   <div class="mb-3">
     <label for="studentFirstname" class="form-label">Firstname</label>
     <input type="text" class="form-control" id="studentFirstname"
-           name="firstName"
-           [(ngModel)]="student.firstName"
-           required >
+           formControlName="firstName"
+           required />
   </div>
   <div class="mb-3">
     <label for="studentLastname" class="form-label">Lastname</label>
     <input type="text" class="form-control" id="studentLastname"
-           name="lastName"
-           [(ngModel)]="student.lastName">
+           formControlName="lastName"
+           required />
   </div>
   <div class="mb-3">
     <label for="studentIndexNumber" class="form-label">Index number</label>
     <input type="number" class="form-control" id="studentIndexNumber"
-           name="indexNumber"
-           [(ngModel)]="student.indexNumber">
+           formControlName="indexNumber"
+           required />
   </div>
   <div class="mb-3">
     <label for="studentEmail" class="form-label">Email</label>
     <input type="email" class="form-control" id="studentEmail"
-           name="email"
-           [(ngModel)]="student.email">
+           formControlName="email" />
   </div>
   <div class="mb-3">
     <label for="studentYear" class="form-label">Year</label>
     <input type="number" class="form-control" id="studentYear"
-           name="year"
-           [(ngModel)]="student.year">
+           formControlName="year" />
   </div>
   <div class="mb-3">
     <label for="studentSpecialization" class="form-label">Specialization</label>
     <input type="text" class="form-control" id="studentSpecialization"
-           name="studentSpecialization"
-           [(ngModel)]="student.specialization">
+           name="specialization" />
   </div>
   <div class="mb-3">
     <label for="studentDescription" class="form-label">Description</label>
     <input type="text" class="form-control" id="studentDescription"
-           name="studentDescription"
-           [(ngModel)]="student.description">
+           formControlName="description" />
   </div>
   <button type="submit" class="btn btn-primary">Save</button>
   <button type="reset"
