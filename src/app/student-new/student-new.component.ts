@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Student} from '../model/Student';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-student-new',
@@ -14,10 +14,13 @@ export class StudentNewComponent implements OnInit{
 
   @Output() onCancel = new EventEmitter();
   studentForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    indexNumber: new FormControl(''),
-    email: new FormControl(''),
+    firstName: new FormControl('',
+      [Validators.required, Validators.minLength(3)]),
+    lastName: new FormControl('',
+      [Validators.required, Validators.minLength(3)]),
+    indexNumber: new FormControl('',
+      [Validators.required, Validators.min(1), Validators.max(1000000)]),
+    email: new FormControl('',Validators.email),
     year: new FormControl(''),
     specialization: new FormControl(''),
     description: new FormControl('')
@@ -30,11 +33,16 @@ export class StudentNewComponent implements OnInit{
   }
 
   saveStudent():void {
-    console.warn(this.studentForm.value);
     this.onSave.emit(this.studentForm.value);
   }
 
   cancel(): void {
     this.onCancel.emit();
+  }
+
+  isErrorFirstName(): boolean {
+    return <boolean>this.studentForm.get('firstName')?.invalid &&
+      (this.studentForm.get('firstName')?.dirty ||
+        this.studentForm.get('firstName')?.touched) as boolean;
   }
 }

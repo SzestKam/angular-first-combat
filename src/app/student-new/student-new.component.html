@@ -2,20 +2,25 @@
   <div class="mb-3">
     <label for="studentFirstname" class="form-label">Firstname</label>
     <input type="text" class="form-control" id="studentFirstname"
-           formControlName="firstName"
-           required />
+           formControlName="firstName" />
+    <div *ngIf="isErrorFirstName()" class="alert alert-danger">
+      <div *ngIf="studentForm.get('firstName')?.errors?.['required']">
+        Field is required
+      </div>
+      <div *ngIf="studentForm.get('firstName')?.errors?.['minlength']">
+        Min length is 3 chars
+      </div>
+    </div>
   </div>
   <div class="mb-3">
     <label for="studentLastname" class="form-label">Lastname</label>
     <input type="text" class="form-control" id="studentLastname"
-           formControlName="lastName"
-           required />
+           formControlName="lastName"/>
   </div>
   <div class="mb-3">
     <label for="studentIndexNumber" class="form-label">Index number</label>
     <input type="number" class="form-control" id="studentIndexNumber"
-           formControlName="indexNumber"
-           required />
+           formControlName="indexNumber"/>
   </div>
   <div class="mb-3">
     <label for="studentEmail" class="form-label">Email</label>
@@ -37,7 +42,10 @@
     <input type="text" class="form-control" id="studentDescription"
            formControlName="description" />
   </div>
-  <button type="submit" class="btn btn-primary">Save</button>
+  <button type="submit"
+          [disabled]="studentForm.invalid"
+          class="btn btn-primary">
+    Save</button>
   <button type="reset"
           class="btn btn-warning"
           (click)="cancel()">
