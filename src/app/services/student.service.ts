@@ -2,6 +2,7 @@ import {Injectable, OnInit} from '@angular/core';
 import {Student} from '../model/Student';
 import {HttpClient} from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {Observable, tap} from 'rxjs';
 export class StudentService {
   private students: Array<Student> = [];
 
-  private readonly baseUrl = 'https://angular-f9286-default-rtdb.europe-west1.firebasedatabase.app/students';
+  private readonly BASE_URL = environment.backendUrl;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -19,13 +20,13 @@ export class StudentService {
   }
 
   save(newStudent: Student): Observable<Student> {
-    const url = this.baseUrl + '/' + newStudent.indexNumber + '.json';
+    const url = this.BASE_URL + '/' + newStudent.indexNumber + '.json';
     return this.httpClient
       .put<Student>(url, JSON.stringify(newStudent));
   }
 
   deleteBy(indexNumber: number): Observable<Student> {
-    const url = this.baseUrl + '/' + indexNumber + '.json';
+    const url = this.BASE_URL + '/' + indexNumber + '.json';
     return this.httpClient.delete<Student>(url);
   }
 
@@ -35,7 +36,7 @@ export class StudentService {
 
   private refreshFromRemote(): void {
     this.students = [];
-    const url = this.baseUrl + '.json';
+    const url = this.BASE_URL + '.json';
     this.httpClient.get(url)
       .pipe(
         tap(value => {
