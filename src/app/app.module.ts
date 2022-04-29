@@ -14,6 +14,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { StudentNewComponent } from './student-new/student-new.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JokesComponent } from './jokes/jokes.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     StudentsComponent,
     EmailPipe,
     StudentDetailsComponent,
-    StudentNewComponent
+    StudentNewComponent,
+    JokesComponent
   ],
   imports: [
     BrowserModule,
